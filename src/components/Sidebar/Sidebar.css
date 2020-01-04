@@ -1,0 +1,19 @@
+.root {
+  margin-top: 34px;
+}
+
+.version {
+  font-size: 12px;
+  margin-left: 5px;
+  color: #aaa;
+}
+
+.list {
+  padding: 0;
+}
+
+.title {
+  margin: 0 0 10px 0;
+  color: #4C566A;
+  text-align: left;
+}

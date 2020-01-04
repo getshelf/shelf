@@ -1,0 +1,6 @@
+yarn-error.log
+./src/config.ts
+.firebase
+node_modules
+src/config.ts
+/build

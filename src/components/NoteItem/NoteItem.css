@@ -1,0 +1,58 @@
+.root {
+  font-size: 14px;
+  list-style: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.item {
+  border-radius: 4px;
+  display: flex;
+  padding: 5px 0;
+  align-items: center;
+}
+
+.selected {
+  background-color: #D8DEE9;
+}
+
+.item:hover {
+  background-color: #E5E9F0;
+}
+
+
+.root a {
+  color: #434C5E;
+  text-decoration: none;
+}
+
+.root a.selected {
+  color: #2E3440;
+  font-weight: bold;
+}
+
+.list {
+  margin: 0;
+  padding: 0 0 0 10px;
+}
+
+
+.content {
+  display: flex;
+}
+
+.toggle {
+  display: inline-block;
+  width: 14px;
+  vertical-align: middle;
+  line-height: 10px;
+  margin-left: 4px;
+}
+
+.add {
+  margin-right: 8px;
+}
+
+.title {
+  flex-grow: 1;
+}
