@@ -29,20 +29,33 @@ export class NotesStore {
         parentId,
         this.userId,
         snapshot => {
-          const notes = snapshot.docs.map(doc => new Note(doc));
+          const changes = snapshot.docChanges();
 
           runInAction(() => {
-            notes.forEach(note => this.setNote(note));
+            const collection = parentId ? this.notes.get(parentId)!.notes : this.root;
+            
+            changes.forEach((change: firebase.firestore.DocumentChange) => {
+              switch (change.type) {
+                
+                case 'added': {
+                  const note = new Note(change.doc);
+                  this.notes.set(note.id, note);
+                  collection.push(note);
+                  break;
+                }
 
-            if (!parentId) {
-              this.root = notes;
-            } else {
-              const parent = this.notes.get(parentId);
-              if (parent) {
-                parent.notes = notes;
+                case 'removed': {
+                  // TODO
+                }
+
+                case 'modified': {
+                  const note = this.notes.get(change.doc.id);
+                  note?.set(change.doc.data())
+                }
               }
+
               resolve();
-            }
+            })
           });
         }
       );
@@ -74,11 +87,6 @@ export class NotesStore {
     } catch (error) {
       return defaultNote;
     }
-  };
-
-  @action
-  setNote = (note: Note) => {
-    this.notes.set(note.id, note);
   };
 
   get userId(): string {

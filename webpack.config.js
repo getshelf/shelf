@@ -55,6 +55,7 @@ module.exports = {
             plugins: [
               ['@babel/plugin-proposal-decorators', { legacy: true }],
               ['@babel/plugin-proposal-class-properties', { loose: true }],
+              '@babel/plugin-proposal-optional-chaining',
               isProd ? null : 'react-hot-loader/babel'
             ].filter(Boolean)
           }
